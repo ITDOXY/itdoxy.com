@@ -17,6 +17,10 @@ minify:
 languages:
   ru:
     languageName: "Русский"
+    menu:
+      main:
+        - name: Категории
+          url: /categories/
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
