@@ -2,7 +2,15 @@
     {{- if .Site.Copyright }}
     <span>{{ .Site.Copyright | markdownify }}</span>
     {{- else }}
-    <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ .Site.Title }}</a></span>
+    <span>&copy; 2019-{{ now.Year }} <a href="{{ "" | absLangURL }}">{{ .Site.Title }}</a></span>
+    <br>
+    <a href="https://eric.vlaskin.org">Эрик Власкин</a>
+    <br>
+    <a href="/contacts/">Контакты</a>
+    <br>
+    <a href="/archives/">Архив</a>
+    <br>
+    <a href="https://lab.itdoxy.com">🧪 Лаборатория</a>
     {{- end }}
 </footer>
 
