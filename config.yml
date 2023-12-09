@@ -19,6 +19,8 @@ languages:
     languageName: "Русский"
     menu:
       main:
+        - name: Услуги
+          url: https://checkout.tochka.com/services
         - name: Категории
           url: /categories/
 
