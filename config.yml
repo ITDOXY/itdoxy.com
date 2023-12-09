@@ -50,7 +50,7 @@ params:
 
   # opengraph
   title: ITDOXY
-  description: Поваренная книга программиста
+  description: Ваш проводник в мир ИТ
   images:
     - background-1920x1080.jpg
 
