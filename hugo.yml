@@ -22,16 +22,16 @@ languages:
     languageName: "Русский"
     menu:
       main:
-        - name: Форум
+        - name: 🏛 Форум
           url: https://t.me/ITDOXY_FORUM
           weight: 1
-        - name: Услуги
+        - name: 🛠 Услуги
           url: https://checkout.tochka.com/services
           weight: 2
-        - name: Категории
+        - name: 🏷 Категории
           url: /categories/
           weight: 3
-        - name: Поиск
+        - name: 🔎 Поиск
           url: /search/
           weight: 4
 
