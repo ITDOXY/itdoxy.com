@@ -2,7 +2,6 @@ baseURL: "/"
 languageCode: "ru-ru"
 defaultContentLanguage: "ru"
 title: ITDOXY
-paginate: 5
 theme: PaperMod
 
 permalinks:
@@ -16,6 +15,10 @@ buildExpired: false
 minify:
   disableXML: true
   minifyOutput: true
+
+pagination:
+  disableAliases: false
+  pagerSize: 5
 
 languages:
   ru:
