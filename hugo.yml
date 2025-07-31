@@ -57,6 +57,7 @@ params:
 
   ShowReadingTime: true
   ShowShareButtons: true
+  comments: true
   defaultTheme: auto
   disableThemeToggle: false
 
