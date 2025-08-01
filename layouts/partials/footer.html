@@ -1,18 +1,28 @@
 {{- if not (.Param "hideFooter") }}
 <footer class="footer">
-    {{- if site.Copyright }}
-    <span>{{ site.Copyright | markdownify }}</span>
-    {{- else }}
-    <span>&copy; 2019-{{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
+    {{- if not site.Params.footer.hideCopyright }}
+        {{- if site.Copyright }}
+        <span>{{ site.Copyright | markdownify }}</span>
+        {{- else }}
+        <span>&copy; 2019-{{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
+        {{- end }}
+        {{- print " × "}}
+        <a href="https://eric.vlaskin.org">Эрик Власкин</a>
+        <br>
+        <span>Дизайн: <a href="https://snezhana.vlaskina.ru">Снежана Власкина</a></span>
     {{- end }}
-    <br>
-    <a href="https://eric.vlaskin.org">Эрик Власкин</a>
+
     <br>
     <a href="/contacts/">Контакты</a>
     <br>
     <a href="/archives/">Архив</a>
     <br>
     <a href="https://lab.itdoxy.com">🧪 Лаборатория</a>
+
+    {{- with site.Params.footer.text }}
+        {{ . | markdownify }}
+        {{- print " · "}}
+    {{- end }}
 </footer>
 {{- end }}
 
