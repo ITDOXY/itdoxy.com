@@ -25,18 +25,21 @@ languages:
     languageName: "Русский"
     menu:
       main:
+        - name: 🎓 Курсы
+          url: /courses/
+          weight: 1
         - name: 🏛 Форум
           url: https://t.me/ITDOXY_FORUM
-          weight: 1
+          weight: 2
         - name: 🛠 Услуги
           url: https://checkout.tochka.com/services
-          weight: 2
+          weight: 3
         - name: 🏷 Категории
           url: /categories/
-          weight: 3
+          weight: 4
         - name: 🔎 Поиск
           url: /search/
-          weight: 4
+          weight: 5
 
 outputs:
   home:
