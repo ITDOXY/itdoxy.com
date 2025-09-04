@@ -84,6 +84,11 @@ params:
 
   ShareButtons: ["linkedin", "reddit", "whatsapp", "telegram"] # To customize which share buttons to be enabled on page
 
+  editPost:
+    URL: "https://github.com/ITDOXY/itdoxy.com/tree/main/content"
+    Text: "Предложить изменение" # edit text
+    appendFilePath: true # to append file path to Edit link
+
   assets:
     favicon: "/favicon.ico"
     favicon16x16: "/favicon-16x16.png"
