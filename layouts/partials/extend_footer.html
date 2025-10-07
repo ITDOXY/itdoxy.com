@@ -1,3 +1,7 @@
 {{- /* Footer custom content area start */ -}}
 {{- /*     Insert any custom code web-analytics, resources, etc. here */ -}}
 {{- /* Footer custom content area end */ -}}
+
+{{- if hugo.IsProduction | or (eq site.Params.env "production") }}
+{{- partial "cookie_consent.html" . }}
+{{- end -}}
