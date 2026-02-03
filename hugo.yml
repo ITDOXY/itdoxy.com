@@ -25,27 +25,24 @@ languages:
     languageName: "Русский"
     menu:
       main:
-        - name: 🎓 Курсы
-          url: /courses/
-          weight: 1
         - name: 🏛 Форум
           url: https://t.me/ITDOXY_FORUM
-          weight: 2
+          weight: 1
         - name: 🧪 Лаборатория
           url: https://lab.itdoxy.com
-          weight: 3
+          weight: 2
         - name: 🛠 Услуги
           url: /services/
-          weight: 4
+          weight: 3
         - name: 🏷 Категории
           url: /categories/
-          weight: 5
+          weight: 4
         - name: 🗄 Архив
           url: /archives/
-          weight: 6
+          weight: 5
         - name: 🔎 Поиск
           url: /search/
-          weight: 7
+          weight: 6
 
 outputs:
   home:
