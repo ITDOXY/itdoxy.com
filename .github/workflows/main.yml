@@ -1,0 +1,111 @@
+name: Build and Deploy Hugo Site to Yandex Cloud
+
+# Определяем триггеры для запуска workflow:
+# 1. При пуше в ветку `main`, укажите вашу основную ветку
+# 2. Вручную через интерфейс GitHub Actions (workflow_dispatch)
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+# Добавляем concurrency для всего workflow
+concurrency:
+  group: build-and-deploy  # Уникальный идентификатор группы
+  cancel-in-progress: true  # Отменяет выполнение текущего workflow, если запущен новый
+
+# Определяем переменные окружения, которые будут использоваться в workflow
+env:
+  HUGO_VERSION: "0.143.1"  # Версия Hugo для сборки сайта
+  AWS_CLI_VERSION: "2.22.35"  # Версия AWS CLI для деплоя
+
+# Определяем jobs (задачи), которые будут выполняться в workflow
+jobs:
+  build:
+    runs-on: self-hosted  # Запуск на self-hosted runner (ваш собственный сервер)
+    container:
+      image: ubuntu:20.04  # Используем контейнер с Ubuntu 20.04
+    name: Build Hugo pages → artifact  # Название задачи
+    steps:
+      # Устанавливаем Git, необходимый для работы с репозиторием
+      - name: Install Git
+        run: apt-get update && apt-get install -y git
+
+      # Клонируем репозиторий с подмодулями (если они есть)
+      - name: Checkout repository with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      # Помечаем репозиторий как безопасный, чтобы избежать проблем с правами
+      - name: Mark repository as safe
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      # Убеждаемся, что подмодули находятся на правильном коммите
+      - name: Ensure submodules are at correct commit
+        run: git submodule update --init --recursive --checkout
+
+      # Устанавливаем Hugo с указанной версией
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}  # Используем версию Hugo из переменной окружения
+          extended: true  # Устанавливаем расширенную версию Hugo
+
+      # Собираем сайт с помощью Hugo, минифицируя выходные файлы
+      - name: Build site
+        run: hugo --minify
+
+      # Загружаем собранный сайт (папка `public`) как артефакт для использования в следующей задаче
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-folder  # Имя артефакта
+          path: ./public  # Путь к папке, которую нужно загрузить
+
+  deploy:
+    runs-on: self-hosted  # Запуск на self-hosted runner
+    container:
+      image: ubuntu:20.04  # Используем контейнер с Ubuntu 20.04
+    name: Deploy to Yandex Object Storage via AWS CLI  # Название задачи
+    needs: build  # Задача зависит от завершения задачи `build`
+    steps:
+      # Скачиваем артефакт (собранный сайт) из предыдущей задачи
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: public-folder  # Имя артефакта
+          path: ./public  # Путь, куда будет скачан артефакт
+
+      # Устанавливаем curl, необходимый для загрузки AWS CLI
+      - name: Install curl
+        run: apt-get update && apt-get install -y curl
+
+      # Устанавливаем unzip, необходимый для распаковки AWS CLI
+      - name: Install unzip
+        run: apt-get update && apt-get install -y unzip
+
+      # Устанавливаем AWS CLI с указанной версией
+      - name: Install AWS CLI ${{ env.AWS_CLI_VERSION }}
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${{ env.AWS_CLI_VERSION }}.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          ./aws/install
+
+      # Настраиваем AWS credentials (ключи доступа) для работы с Yandex Object Storage
+      - name: Configure AWS credentials
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}  # Ключ доступа из секретов GitHub
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  # Секретный ключ из секретов GitHub
+        run: |
+          aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
+          aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
+          aws configure set default.region ru-central1  # Устанавливаем регион (Yandex Cloud)
+
+      # Деплоим собранный сайт в Yandex Object Storage (S3 bucket)
+      - name: Deploy to S3 bucket
+        env:
+          BUCKET_NAME: ${{ secrets.BUCKET_NAME }}  # Имя бакета из секретов GitHub
+        run: |
+          echo $BUCKET_NAME
+          aws s3 sync ./public/ s3://$BUCKET_NAME/ --delete --endpoint-url https://storage.yandexcloud.net
+          # Синхронизируем папку `public` с бакетом, удаляя файлы, которых нет в источнике
