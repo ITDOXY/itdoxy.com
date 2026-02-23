@@ -23,7 +23,7 @@ jobs:
   build:
     runs-on: self-hosted  # Запуск на self-hosted runner (ваш собственный сервер)
     container:
-      image: ubuntu:20.04  # Используем контейнер с Ubuntu 20.04
+      image: ubuntu:22.04  # Используем контейнер с Ubuntu 22.04
     name: Build Hugo pages → artifact  # Название задачи
     steps:
       # Устанавливаем Git, необходимый для работы с репозиторием
@@ -65,7 +65,7 @@ jobs:
   deploy:
     runs-on: self-hosted  # Запуск на self-hosted runner
     container:
-      image: ubuntu:20.04  # Используем контейнер с Ubuntu 20.04
+      image: ubuntu:22.04  # Используем контейнер с Ubuntu 22.04
     name: Deploy to Yandex Object Storage via AWS CLI  # Название задачи
     needs: build  # Задача зависит от завершения задачи `build`
     steps:
