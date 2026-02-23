@@ -48,6 +48,8 @@ params:
   defaultTheme: auto
   disableThemeToggle: false
 
+  author: "ITDOXY"
+
   # opengraph
   title: ITDOXY
   description: Ваш проводник в мир ИТ
