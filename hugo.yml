@@ -1,7 +1,7 @@
 baseURL: "/"
 languageCode: "ru-ru"
 defaultContentLanguage: "ru"
-title: ITDOXY
+title: АЙТИДОКСИ
 theme: PaperMod
 
 permalinks:
@@ -61,10 +61,10 @@ params:
   defaultTheme: auto
   disableThemeToggle: false
 
-  author: "ITDOXY"
+  author: "АЙТИДОКСИ / ITDOXY"
 
   # opengraph
-  title: ITDOXY
+  title: "АЙТИДОКСИ / ITDOXY"
   description: Ваш проводник в мир ИТ
   images:
     - logo.png
