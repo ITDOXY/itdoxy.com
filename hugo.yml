@@ -73,7 +73,7 @@ params:
   title: "АЙТИДОКСИ / ITDOXY"
   description: Ваш проводник в мир ИТ
   images:
-    - logo.png
+    - logo.jpg
 
   # home-info mode
   homeInfoParams:
