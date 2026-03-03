@@ -31,18 +31,15 @@ languages:
         - name: 🧪 Лаборатория
           url: https://lab.itdoxy.com
           weight: 2
-        - name: 🛠 Услуги
-          url: /services/
-          weight: 3
         - name: 🏷 Категории
           url: /categories/
-          weight: 4
+          weight: 3
         - name: 🗄 Архив
           url: /archives/
-          weight: 5
+          weight: 4
         - name: 🔎 Поиск
           url: /search/
-          weight: 6
+          weight: 5
 
 outputs:
   home:
