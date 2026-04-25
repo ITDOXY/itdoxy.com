@@ -53,7 +53,7 @@ params:
   dateFormat: "02.01.2006"
 
   ShowReadingTime: true
-  ShowShareButtons: true
+  ShowShareButtons: false
   comments: true
   defaultTheme: auto
   disableThemeToggle: false
@@ -83,7 +83,7 @@ params:
     - name: github
       url: "https://github.com/ITDOXY"
 
-  ShareButtons: ["linkedin", "reddit", "whatsapp", "telegram"] # To customize which share buttons to be enabled on page
+  #ShareButtons: ["linkedin", "reddit", "whatsapp", "telegram"] # To customize which share buttons to be enabled on page
 
   editPost:
     URL: "https://github.com/ITDOXY/itdoxy.com/tree/main/content"
