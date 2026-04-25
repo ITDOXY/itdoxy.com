@@ -98,7 +98,7 @@
             html.dataset.theme = 'dark';
             localStorage.setItem("pref-theme", 'dark');
         }
-        location.reload();
+        window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: html.dataset.theme } }));
     })
 
 </script>
