@@ -21,7 +21,7 @@ env:
 # Определяем jobs (задачи), которые будут выполняться в workflow
 jobs:
   build:
-    runs-on: self-hosted  # Запуск на self-hosted runner (ваш собственный сервер)
+    runs-on: ubuntu-22.04  # Запуск на GitHub-hosted runner
     container:
       image: ubuntu:22.04  # Используем контейнер с Ubuntu 22.04
     name: Build Hugo pages → artifact  # Название задачи
@@ -63,7 +63,7 @@ jobs:
           path: ./public  # Путь к папке, которую нужно загрузить
 
   deploy:
-    runs-on: self-hosted  # Запуск на self-hosted runner
+    runs-on: ubuntu-22.04  # Запуск на GitHub-hosted runner
     container:
       image: ubuntu:22.04  # Используем контейнер с Ubuntu 22.04
     name: Deploy to Yandex Object Storage via AWS CLI  # Название задачи
