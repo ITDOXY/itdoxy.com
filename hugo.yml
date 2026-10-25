@@ -1,5 +1,5 @@
 baseURL: "https://itdoxy.com/"
-languageCode: "ru-ru"
+locale: "ru-RU"
 defaultContentLanguage: "ru"
 title: АЙТИДОКСИ
 theme: PaperMod
@@ -22,7 +22,7 @@ pagination:
 
 languages:
   ru:
-    languageName: "Русский"
+    label: "Русский"
     menu:
       main:
         - name: 🏛 Форум

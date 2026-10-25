@@ -6,7 +6,7 @@ This repository contains the Russian-language ITDOXY blog, built with Hugo and P
 
 - `content/posts/`: articles, either standalone Markdown files or page bundles containing `index.md` and images.
 - `content/`: top-level pages such as search, contacts, and archives; taxonomy indexes live in `categories/` and `tags/`.
-- `layouts/`: site-specific Go HTML templates and partials overriding the theme.
+- `layouts/` (partials in `layouts/_partials/`): site-specific Go HTML templates and partials overriding the theme.
 - `static/`: assets copied directly into the generated site, including CSS, images, and favicons.
 - `archetypes/default.md`: template for new content.
 - `themes/PaperMod/`: Git submodule; prefer site-level overrides in `layouts/` for local customizations.
@@ -14,7 +14,7 @@ This repository contains the Russian-language ITDOXY blog, built with Hugo and P
 
 ## Build, Test, and Development Commands
 
-Use Hugo Extended; CI currently pins version `0.156.0`. No npm toolchain is configured.
+Use Hugo Extended; CI currently pins version `0.168.0`. No npm toolchain is configured.
 
 - `git submodule update --init --recursive`: initialize the pinned theme checkout.
 - `hugo server -D`: preview locally at `http://localhost:1313`, including drafts.
