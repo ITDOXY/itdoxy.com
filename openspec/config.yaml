@@ -1,0 +1,7 @@
+schema: spec-driven
+context: |
+  ITDOXY — русскоязычный технический сайт. Пишите артефакты OpenSpec на русском.
+  Для объёма, согласований и полномочий используйте AGENTS.md, docs/editorial-workflow.md
+  и docs/plans/ai-editorial-progress.md. Руководство по работе находится в docs/ai-editorial.md.
+  Критерии берите из docs/article-quality.md, правила проверки и текущие профили
+  генератора и темы — из docs/editorial-testing.md, требования к источникам — из docs/research-policy.md.

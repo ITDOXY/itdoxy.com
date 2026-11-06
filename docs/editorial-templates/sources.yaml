@@ -1,0 +1,29 @@
+schema_version: 1
+article_id: "<article-id>"
+provenance: "new"
+reconstructed_at: null
+sources: []
+
+# Для восстановленного досье: provenance: "reconstructed" и дата
+# reconstructed_at в формате "YYYY-MM-DD". Для нового досье оставьте null.
+# Чтобы добавить источник, замените `sources: []` на `sources:` и внесите
+# элемент по образцу ниже. Оставляйте null для неизвестных сведений.
+#   - id: "S01"
+#     url: null
+#     public_file: null
+#     title: "<название>"
+#     author: null
+#     type: "official-docs"
+#     origin: "provided"
+#     published_at: null
+#     accessed_at: null
+#     software_version: null
+#     access_status: "not_checked"
+#     locator: null
+#     notes: null
+# Укажите точный публичный URL или публичный идентификатор файла.
+# origin: provided | existing_article | found_now.
+# access_status: not_checked | read | partial | unavailable.
+# Даты записывайте строками "YYYY-MM-DD". accessed_at — дата фактического доступа.
+# locator: раздел, страницы, строки или таймкод. Для видео в notes укажите
+# доступные модальности, происхождение транскрипции и ограничения.
